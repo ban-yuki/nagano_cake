@@ -1,7 +1,27 @@
 <h2>Sign up</h2>
+  
+<%= form_with model: @customer, url: customer_registration_path do |f| %>
+<%= render "public/shared/error_messages", resource: @customer %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
+  <div class="field">
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name_kana %><br>
+    <%= f.text_field :last_name_kana %>
+  </div>
+
+  <div class="field">
+    <%= f.label :first_name_kana %><br>
+    <%= f.text_field :first_name_kana %>
+  </div>
 
   <div class="field">
     <%= f.label :email %><br />
