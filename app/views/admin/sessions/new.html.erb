@@ -1,3 +1,21 @@
+<body>
+  <header>
+    <% if admin_signed_in? %>
+      <li>
+        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to "新規登録", new_admin_session_path %>
+      </li>
+      <li>
+        <%= link_to "ログイン", admin_session_path %>
+      </li>
+    <% end %>
+  </header>
+  <%= yield %>
+</body>
+
 <h2>Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
