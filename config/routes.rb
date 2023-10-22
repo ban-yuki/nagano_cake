@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   
+  namespace :public do
+    patch 'customers/update'
+    patch 'customers/withdraw'
+    resources :customers, only: [:show, :edit, :confirm_withdraw]
+  end
   devise_for :customers, skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
