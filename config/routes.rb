@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   sessions: 'public/sessions'
   }
   
+  namespace :admin do
+    post 'items/create'
+    patch 'items/update'
+    resources :items, only: [:new, :index, :show, :edit]
+  end
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
   }
