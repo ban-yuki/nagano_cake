@@ -7,12 +7,12 @@ class Public::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
   
   def new
-    @item = Item.new 
+    @customer = Customer.new 
   end
   
   def create
-    item = Item.new(item_params)
-    item.save
+    customer = Customer.new(customer_params)
+    customer.save
   end
 
   protected
@@ -20,11 +20,11 @@ class Public::RegistrationsController < Devise::RegistrationsController
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
+  
+  private
+  
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
 
   # POST /resource
   # def create
