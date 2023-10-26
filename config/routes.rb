@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   }
   
   namespace :admin do
-    post 'items/create'
+    post 'items/create'  
     patch 'items/update'
     resources :items, only: [:new, :index, :show, :edit]
   end

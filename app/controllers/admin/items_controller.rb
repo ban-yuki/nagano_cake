@@ -1,8 +1,9 @@
 class Admin::ItemsController < ApplicationController
   
-  has_one_attached :image
+  #has_one_attached :image
   
   def new
+    @item = Item.new 
   end
   
   def index
@@ -15,8 +16,16 @@ class Admin::ItemsController < ApplicationController
   end
   
   def create
+    item = Item.new(item_params)
+    item.save
   end
   
   def update
+  end
+  
+  private
+  
+  def item_params
+    params.require(:item).permit(:name, :introduction, :price)
   end
 end
