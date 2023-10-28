@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     get '/customers/sign_up', to: 'public/registrations#new'
     post '/customers', to: 'public/registrations#create'
     get 'sessions/new'
+    get  '/customers/check' => 'customers#check'
+    patch  '/customers/withdraw' => 'customers#withdraw'
     resources :customers, only: [:show, :edit, :confirm_withdraw]
   end
   devise_for :customers, skip: [:passwords], controllers: {

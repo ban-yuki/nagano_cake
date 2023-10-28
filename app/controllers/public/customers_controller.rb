@@ -11,7 +11,7 @@ class Public::CustomersController < ApplicationController
   def update
   end
 
-  def confirm_withdraw
+  def check
   end
 
   def withdraw
