@@ -10,6 +10,8 @@ class Public::SessionsController < Devise::SessionsController
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
 
+  Customer.find_by(email: params[:customer][:email])
+
   # GET /resource/sign_in
   # def new
   #   super
