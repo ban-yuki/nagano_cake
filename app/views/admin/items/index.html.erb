@@ -1,17 +1,15 @@
 <h2>商品一覧</h2>
 <table>
+  <tr>
+    <th>商品ID</th>
+    <th>商品名</th>
+    <th>税抜価格</th>
+  </tr>
   <% @items.each do |item| %>
     <tr>
-      <th>商品ID</th>
-        <td><%= item.id %></td>
-    </tr>
-    <tr>
-      <th>商品名</th>
-        <td><%= item.name %></td>
-    </tr>
-    <tr>
-      <th>税抜価格</th>
-        <td><%= item.price %></td>
+      <td><%= item.id %></td>
+      <td><%= item.name %></td>
+      <td><%= item.price %></td>
     </tr>
   <% end %>
 </table>
