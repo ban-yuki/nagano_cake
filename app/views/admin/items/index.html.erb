@@ -1,19 +1,17 @@
-<%= form_with model: @item, url: admin_items_path do |f| %>
 <h2>商品一覧</h2>
-  <thead>
+<table>
+  <% @items.each do |item| %>
     <tr>
       <th>商品ID</th>
-      <th>商品名</th>
-      <th>税抜価格</th>
+        <td><%= item.id %></td>
     </tr>
-  </thead>
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= link_to new_admin_item_path %></td>
-        <td><%= link_to item.title, book_path(book.id) %></td>
-        <td><%= book.body %></td>
-      </tr>
-    <% end %>
-  </tbody>
-<% end %>
+    <tr>
+      <th>商品名</th>
+        <td><%= item.name %></td>
+    </tr>
+    <tr>
+      <th>税抜価格</th>
+        <td><%= item.price %></td>
+    </tr>
+  <% end %>
+</table>

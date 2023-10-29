@@ -7,7 +7,6 @@ class Admin::ItemsController < ApplicationController
   end
   
   def index
-    @item = Item.new
     @items = Item.all
   end
   
@@ -18,8 +17,8 @@ class Admin::ItemsController < ApplicationController
   end
   
   def create
-    item = Item.new(item_params)
-    item.save
+    @item = Item.new(item_params)
+    @item.save
   end
   
   def update

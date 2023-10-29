@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    post 'items/create'
-    patch 'items/update'
+    post 'admin/items/create'
+    patch 'admin/items/:id' => 'items#update'
     resources :items, only: [:new, :index, :show, :edit]
   end
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
