@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get  '/current_customers/confirm_withdraw' => 'customers#confirm_withdraw'
     patch  '/current_customers/withdraw' => 'customers#withdraw'
     resources :customers, only: [:show, :edit]
+    resources :items, only: [:index, :show,]
   end
   devise_for :customers, skip: [:passwords], controllers: {
   registrations: "public/registrations",
@@ -15,8 +16,8 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    post 'admin/items/create' => 'items#create'
-    patch 'admin/items/:id' => 'items#update'
+    post 'items/create' => 'items#create'
+    patch 'items/:id' => 'items#update'
     resources :items, only: [:new, :index, :show, :edit]
   end
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
