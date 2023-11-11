@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   #validates :image
   
-  belongs_to :admin
+  #belongs_to :
   
   has_one_attached :image
 

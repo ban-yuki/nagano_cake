@@ -1,7 +1,13 @@
 <h2>商品詳細</h2>
 
 <%= form_with model: @item, url: admin_item_path(@item.id) do |f| %>
-  <%= image_tag @item, get_image(100,100) %>
+  
+  <% if @item.image.attached? %>
+    <%= image_tag @item.image, size: "300x300" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "300x300" %>
+  <% end %>
+  
   <div>
     <p>商品名：<%= @item.name %></p>
     <p>商品説明：<%= @item.introduction %></p>
