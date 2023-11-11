@@ -13,7 +13,8 @@
     <p>商品説明：<%= @item.introduction %></p>
     <p>税抜価格：<%= @item.price %>円</p>
   </div>
+<% end %>
 
-  <%=  link_to f.submit '編集する', class: "btn btn-sm btn-success" %>
-
+<%= form_with url: edit_admin_item_path(@item.id), method: :get, local: true do |form| %>
+ <%= form.submit '編集する', class: "btn btn-sm btn-success" %>
 <% end %>
