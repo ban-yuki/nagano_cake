@@ -1,10 +1,17 @@
 <%= form_with model: @item, url: public_item_path(@item.id) do |f| %>
-  <%= image_tag @item, get_image(100,100) %>
+  <% if @item.image.attached? %>
+    <%= image_tag @item.image, size: "200x200" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "200x200" %>
+  <% end %>
+  
   <div>
     <p>商品名：<%= @item.name %></p>
     <p>商品説明：<%= @item.introduction %></p>
     <p>税抜価格：<%= @item.price %>円</p>
   
-  <%= f.submit 'カートに入れる' %>
+<% end %>
 
+<%= form_with url: _path(@item.id), method: :get, local: true do |form| %>
+ <%= form.submit 'カートに入れる', class: "btn btn-sm btn-success" %>
 <% end %>
