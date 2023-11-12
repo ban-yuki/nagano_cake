@@ -5,24 +5,29 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  
+
   def new
-    @customer = Customer.new 
-  end
-  
-  def create
-    customer = Customer.new(customer_params)
-    customer.save
+    @customer = Customer.new
   end
 
-  protected
+  def create
+    @customer = Customer.new(customer_params)
+    if @customer.save
+      redirect_to public_customer_path(@customer)
+    else
+      render :new
+    end
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
-  
+
   private
-  
+
+  def customer_params
+    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :password, :password_confirmation)
+  end
 
   # GET /resource/sign_up
 
