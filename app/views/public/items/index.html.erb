@@ -1,15 +1,18 @@
 <h2>商品一覧</h2>
-<table>
-  <tr>
-    <th>商品ID</th>
-    <th>商品名</th>
-    <th>税抜価格</th>
-  </tr>
-  <% @items.each do |item| %>
-    <tr>
-      <td><%= item.id %></td>
-      <td><%= item.name %></td>
-      <td><%= item.price %></td>
-    </tr>
+
+<% @items.each do |item| %>
+
+  <% if item.image.attached? %>
+    <%= image_tag item.image, size: "200x200" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "200x200" %>
   <% end %>
-</table>
+  
+  <table>
+
+    <p>商品名：<%= item.name %></p>
+    <p>税抜価格：<%= item.price %>円</p>
+ 
+  </table>
+
+<% end %>
