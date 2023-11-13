@@ -19,6 +19,16 @@ class Public::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def update
+    @customer = Customer.find(params[:id])
+    if @customer.update(customer_params)
+    redirect_to public_customer_path(@customer)
+    else
+    @customer = Customer.all
+    render :edit
+    end
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
