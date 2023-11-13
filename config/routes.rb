@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   namespace :public do
     patch 'current_customers/update'
     get '/customers/sign_up', to: 'public/registrations#new'
-    post '/customers/sign_up', to: 'public/registrations#create'
+    post '/customers', to: 'public/registrations#create'
     get 'sessions/new'
     get  '/current_customers/confirm_withdraw' => 'customers#confirm_withdraw'
     patch  '/current_customers/withdraw' => 'customers#withdraw'
