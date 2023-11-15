@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  
+
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-  
-  namespace :public do
+
+  scope module: :public do
     patch 'current_customers/update'
     patch 'current_customers' => 'public/customers#update'
     get  '/current_customers/confirm_withdraw' => 'customers#confirm_withdraw'
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:show, :edit]
     resources :items, only: [:index, :show,]
   end
-  
+
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
@@ -24,6 +24,6 @@ Rails.application.routes.draw do
     resources :items, only: [:new, :index, :show, :edit]
     resources :customers, only: [:index, :show, :edit]
   end
- 
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

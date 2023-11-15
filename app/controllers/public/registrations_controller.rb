@@ -13,7 +13,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   def create
     @customer = Customer.new(customer_params)
     if @customer.save
-      redirect_to public_customer_path(@customer)
+      redirect_to customer_path(@customer)
     else
       render :new
     end
@@ -22,7 +22,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
-    redirect_to public_customer_path(@customer)
+    redirect_to customer_path(@customer)
     else
     @customer = Customer.all
     render :edit
