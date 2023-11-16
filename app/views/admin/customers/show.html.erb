@@ -1,0 +1,23 @@
+<h2>会員詳細</h2>
+
+<%= form_with model: @customer, url: admin_customer_path(@customer.id) do |f| %>
+
+  <div>
+    <p>会員ID<%= @customer.id %></p>
+    <p>氏名<%= @customer.full_name %></p>
+    <p>フリガナ<%= @customer.full_name_kana %></p>
+    <p>郵便番号<%= @customer.postal_code %></p>
+    <p>住所<%= @customer.address %></p>
+    <p>電話番号<%= @customer.telephone_number %></p>
+    <p>メールアドレス<%= @customer.email %> %></p>
+    <p>会員ステータス<%= @customer.is_active %></p>
+  </div>
+<% end %>
+
+<%= form_with url: edit_admin_customer_path(@customer.id), method: :get, local: true do |form| %>
+ <%= form.submit '編集する', class: "btn btn-sm btn-success" %>
+<% end %>
+
+<%= form_with url: edit_admin_customer_path(@customer.id), method: :get, local: true do |form| %>
+  <%= form.submit '注文履歴一覧を見る', class: "btn btn-sm btn-success" %>
+<% end %>
