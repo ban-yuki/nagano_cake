@@ -1,7 +1,7 @@
 <h2>マイページ</h2>
 
 <h4>登録情報</h4>
-<%= form_with model: @public.new do |f| %>
+<%= form_with model: @customer, url: new_admin_session_path do |f| %>
   <table>
   <table border="1">
     <tr>
