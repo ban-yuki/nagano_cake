@@ -1,38 +1,43 @@
 <h2>マイページ</h2>
 
 <h4>登録情報</h4>
-<%= form_with model: @customer, url: new_admin_session_path do |f| %>
-  <table>
-  <table border="1">
+<%= form_with model: @customer, url: new_customer_session_path do |f| %>
+
+  <body>
+  <table border="1"width="400">
     <tr>
-      <td>名前</td>
-      <td>セル２</td>
+      <th>氏名</th><th><%= @customer.full_name %></th>
     </tr>
+
     <tr>
-      <td>カナ</td>
-      <td>セル４</td>
+      <th>カナ</th><th><%= @customer.full_name_kana %></th>
     </tr>
+
     <tr>
-      <td>郵便番号</td>
-      <td>セル４</td>
+      <th>郵便番号</th><th><%= @customer.postal_code %></th>
     </tr>
-    <tr>
-      <td>住所</td>
-      <td>セル４</td>
+
+     <tr>
+      <th>住所</th><th><%= @customer.address %></th>
     </tr>
+
     <tr>
-      <td>電話番号</td>
-      <td>セル４</td>
+      <th>電話番号</th><th><%= @customer.telephone_number %></th>
     </tr>
+
     <tr>
-      <td>メールアドレス</td>
-      <td>セル４</td>
+      <th>メールアドレス</th><th><%= @customer.email %></th>
     </tr>
   </table>
-  
+  </body>
+
+  <%= f.submit "配送先" %>
+
 <% end %>
 
-<h4>配送先</h4>
 
-<h4>注文履歴</h4>
+
+<%= form_with url: order_path, method: :get, local: true do |form| %>
+ <%= form.submit '注文履歴', class: "btn btn-sm btn-success" %>
+<% end %>
 

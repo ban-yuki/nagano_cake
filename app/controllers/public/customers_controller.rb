@@ -2,7 +2,7 @@ class Public::CustomersController < ApplicationController
   #before_action :is_matching_login_user
 
   def show
-    #@public = Public.find(params[:id])
+    @customer = Customer.find(params[:id])
   end
 
   def edit
