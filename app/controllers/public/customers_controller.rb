@@ -10,6 +10,7 @@ class Public::CustomersController < ApplicationController
   end
 
   def update
+    @customer = Customer.find(params[:id])
   end
 
   def confirm_withdraw
