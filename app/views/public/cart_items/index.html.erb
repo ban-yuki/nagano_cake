@@ -1,0 +1,66 @@
+<h4>ショッピングカート</h4>
+
+<%= form_with model: @cart_item, url: new_order_path do |f| %>
+
+  <body>
+  <table border="1"width="400">
+    <tr>
+      <th>氏名</th><th><%= @customer.full_name %></th>
+    </tr>
+
+    <tr>
+      <th>カナ</th><th><%= @customer.full_name_kana %></th>
+    </tr>
+
+    <tr>
+      <th>郵便番号</th><th><%= @customer.postal_code %></th>
+    </tr>
+
+     <tr>
+      <th>住所</th><th><%= @customer.address %></th>
+    </tr>
+
+    <tr>
+      <th>電話番号</th><th><%= @customer.telephone_number %></th>
+    </tr>
+
+    <tr>
+      <th>メールアドレス</th><th><%= @customer.email %></th>
+    </tr>
+  </table>
+  </body>
+
+  <%= f.submit "配送先" %>
+
+<% end %>
+
+
+
+<%= form_with url: order_path, method: :get, local: true do |form| %>
+ <%= form.submit '注文履歴', class: "btn btn-sm btn-success" %>
+<% end %>
+
+<table> 
+  <thead>
+    <th>単価(税込)</th>
+    <th>小計</th>
+  </thead>
+  <tbody>
+  <% @item.each do |cart_item| %>
+    <tr>
+      <td><%= cart_item.item.with_tax_price %></td>
+      <td><%= cart_item.subtotal %></td>
+    </tr>
+  <% end %>
+
+  <div class="row">
+    <div class="col-2">
+      <div class="field">
+        合計金額
+        <% @total += cart_item.subtotal %>
+      </div>
+    </div>
+  </div>
+
+  </tbody>
+</table>
