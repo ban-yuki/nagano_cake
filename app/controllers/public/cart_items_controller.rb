@@ -2,7 +2,7 @@ class Public::CartItemsController < ApplicationController
   
   def index
     @cart_items = CartItem.all
-    @item = Item.find(params[:id])
+    @item = Item.all
     @total = 0
   end
 
