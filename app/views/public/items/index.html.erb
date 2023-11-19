@@ -1,0 +1,19 @@
+<h4>商品一覧</h4><h6>（全　件）</h6>
+
+<%= form_with model: @item, url: item_path(@item.id) do |f| %>
+  <% if @item.image.attached? %>
+    <%= image_tag @item.image, size: "200x200" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "200x200" %>
+  <% end %>
+  
+  <div>
+    <p>商品名：<%= @item.name %></p>
+    <p>商品説明：<%= @item.introduction %></p>
+    <p>税抜価格：<%= @item.price %>円</p>
+  
+<% end %>
+
+<%= form_with url: order_path(@item.id), method: :get, local: true do |form| %>
+ <%= form.submit 'カートに入れる', class: "btn btn-sm btn-success" %>
+<% end %>
