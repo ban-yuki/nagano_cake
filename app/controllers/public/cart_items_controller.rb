@@ -3,7 +3,7 @@ class Public::CartItemsController < ApplicationController
   def index
     @cart_items = CartItem.all
     @item = Item.all
-    @total = 0
+    @total = @cart_items.inject(0) { + cart_item.subtotal }
   end
 
   def create
@@ -25,23 +25,21 @@ class Public::CartItemsController < ApplicationController
     if @cart_item.update(cart_item_params)
     redirect_to admin_items_path(@cart_item)
     else
-    @cart_item = CartItem.all
+    @cart_items = CartItem.all
     render :edit
     end
   end
   
   def destroy
     @cart_item = CartItem.find(params[:id])
-    cart_item = CartItem.find(params[:id])
     cart_item.destroy
     @cart_items = CartItem.all
   　render 'index'
   end
   
   def destroy_all
-    @cart_items = CartItems
-    cart_items = CartItem.all
-    cart_items.destroy_all
+    @cart_items = CartItems.all
+    current_customer.cart_items.destroy_all
   　render 'index'
   end
 
