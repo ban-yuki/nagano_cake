@@ -1,27 +1,17 @@
-<h4>商品一覧</h4><h6>（全　件）</h6>
+<h4>商品一覧</h4><h5>（全　件）</h5>
 
-<% @item.each do |item| %>
-  <table>
-    <tr>
-      <th>商品ID</th>
-      <th>商品名</th>
-      <th>税抜価格</th>
-    </tr>
-    <tr>
-      
-    </tr>
-    <tr>
-      <td><%= link_to admin_item_path(item.id) do %>
-            <%= item.name %>
-          <% end %>
-      </td>
-      <td><%= item.price %></td>
-    </tr>
-<% end %>
-
-  
-
-
-<%= form_with url: order_path(item.id), method: :get, local: true do |form| %>
- <%= form.submit 'カートに入れる', class: "btn btn-sm btn-success" %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <% @items.each do |item| %>
+      <div class="col-2">
+        <%= image_tag item.image, size: "100x100" %>
+        <p>
+        <%= link_to item_path(item.id) do %>
+          <%= item.name %>
+        <% end %>
+        </p>
+        <p>¥<%= item.price %></p>
+      </div>
+    <% end %> 
+  </div>
+</div>
