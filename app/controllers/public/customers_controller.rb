@@ -26,6 +26,9 @@ class Public::CustomersController < ApplicationController
   end
 
   def withdraw
+    current_customer.update(status: 'withdrawn')
+    reset_session
+    redirect_to root_path
   end
 
   protected
