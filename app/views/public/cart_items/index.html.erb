@@ -2,9 +2,6 @@
 
 <%= button_to 'カートを空にする', @cart_item, method: :delete_all, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: 'fbtn' %>
 
-
-<%= form_with model: @cart_items, url: new_order_path do |f| %>
-
   <body>
     <table border="1" width="600">
       <thead>
@@ -36,7 +33,6 @@
       </div>
     </div>
   </div>
-<% end %>
 
 <%= form_with url: items_path, method: :get, local: true do |form| %>
  <%= form.submit '買い物を続ける', class: "btn btn-sm btn-success" %>

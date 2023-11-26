@@ -4,9 +4,16 @@
       <p><%= image_tag @item.image, size: "300x300" %></p>
       <p><%= @item.name %></p>
       <p><%= @item.introduction %></p>
-      <p>¥<%= @item.price %>円</p>
+      <p>¥<%= @item.price %>（税込）</p>
   </div>
 </table>
+
+
+<%= form_with model:@cart_item, url:cart_items_path, method: :post, local:true do |f| %>
+  <%= f.hidden_field :item_id, value: @item.id %>
+  <p>数量を選択してください。</p>
+  <%= f.select :amount, *[1..5],{include_blank: '個数選択'},required:true%>&emsp;
+<% end %>
 
 <%= form_with url: cart_items_path, method: :get, local: true do |form| %>
  <%= form.submit 'カートに入れる', class: "btn btn-sm btn-success" %>
