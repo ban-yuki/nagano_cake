@@ -32,8 +32,8 @@ class Public::CartItemsController < ApplicationController
 		   @cart_item_u.number_of_items += params[:cart_item][:number_of_items].to_i #既にある情報に個数を合算
 		   @cart_item_u.update(number_of_items: @cart_item_u.number_of_items) #情報の更新　個数カラムのみ
 		   redirect_to public_cart_items_path #カートページ遷移
-		  else
-			  @cart_item = CartItem.new(cart_item_params) #新しくカートの作成
+		else
+			@cart_item = CartItem.new(cart_item_params) #新しくカートの作成
 			  @cart_item.customer_id = current_customer.id #誰のカートか紐付け
 			    if @cart_item.save #情報を保存できるか？
     			  flash[:notice] = 'カートに商品が入りました。'
@@ -42,7 +42,7 @@ class Public::CartItemsController < ApplicationController
     		    @quantity = Item.count #商品の数をカウント
     				render 'index' #indexアクションを呼び出す
 		      end
-	  end
+    end
 	end
 
 
