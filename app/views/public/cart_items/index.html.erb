@@ -18,7 +18,7 @@
   <%= form_with(model: @cart_items, url: cart_items_path, local: true) do |f| %>
     <%= f.hidden_field :item_id, value: @item.id %>
     <%= f.hidden_field :customer_id, value: current_customer.id %>
-    <% @cart_items.each do |item| %>
+    <% @cart_items.each do |cart_item| %>
     <tr>
       <td><%= cart_item.item.name %></td>
       <td><%= cart_item.item.with_tax_price %></td>
@@ -45,3 +45,5 @@
 <%= form_with url: new_order_path, method: :get, local: true do |form| %>
  <%= form.submit '情報入力に進む', class: "btn btn-sm btn-success" %>
 <% end %>
+
+
