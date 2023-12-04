@@ -18,7 +18,7 @@
 <%= form_with model:@cart_item, url:cart_items_path, method: :post, local:true do |f| %>
   <%= f.hidden_field :item_id, value: @item.id %>
   <p>数量を選択してください。</p>
-  <%= f.select :amount, *[1..5],{include_blank: '個数選択'},required:true%>&emsp;
+  <%= f.select :quantity, *[1..5],{include_blank: '個数選択'},required:true%>&emsp;
   <%= f.submit "カートに入れる" %>
 <% end %>
 
