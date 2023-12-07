@@ -1,3 +1,5 @@
+<%= render 'layouts/customer_header' %>
+
 <h4>ショッピングカート</h4>
 
 <%= button_to 'カートを空にする', @cart_item, method: :delete_all, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: 'fbtn' %>
@@ -16,8 +18,7 @@
     </table>
   </body>
   <%= form_with(model: @cart_items, url: cart_items_path, local: true) do |f| %>
-    <%= f.hidden_field :item_id, value: @item.id %>
-    <%= f.hidden_field :customer_id, value: current_customer.id %>
+   
     <% @cart_items.each do |cart_item| %>
     <tr>
       <td><%= cart_item.item.name %></td>
