@@ -17,6 +17,10 @@
       <h4>お届け先</h4>
       <%= f.radio_button :address_type, "customer_address", checked: true %>
       <%= f.label :address_type, "ご自身の住所" %>
+      <br>
+        〒<%= current_member.post_code %> #郵便番号
+          <%= current_member.address %><br>　＃住所
+          <%= current_member.last_name %><%= current_member.first_name %>　#名前
      
       </div>
 
