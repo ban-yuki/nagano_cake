@@ -1,6 +1,6 @@
 class Public::OrdersController < ApplicationController
   
-   def new
+  def new
     @order = Order.new
   end
 
@@ -10,11 +10,10 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @orders = Order.all
   end
 
   def confirm
-    @item = Item.find(params[:item_id])
+    @order = Order.new(order_params)
     @order = @item.order.new(order_params)
     @confirm = 800
      
@@ -49,7 +48,8 @@ class Public::OrdersController < ApplicationController
   
   def order_params
     params.require(:order).permit(:quantity, :item_id)
-  end 
+  end
+  
 end
 
  
