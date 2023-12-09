@@ -14,7 +14,11 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
-    @order = Order.find(params[:id])
+    @item = Item.find(params[:item_id])
+    @order = @item.order.new(order_params)
+    @confirm = 800
+     
+    
   end
   
   def confirm_orders
@@ -22,11 +26,16 @@ class Public::OrdersController < ApplicationController
   end
   
   def create
-    @order = Order.new(item_params)
-    if @order.save 
-    redirect_to admin_item_path(@order)
-    else
-    render :new
-    end
+    @order = @item.order.new(order_params)
+    @order.save
+    redirect_to items_path  
   end
+  
+  private
+  
+  def order_params
+    params.require(:order).permit(:quantity, :item_id)
+  end 
 end
+
+ 
