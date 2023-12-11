@@ -18,12 +18,12 @@
     </table>
   </body>
   <%= form_with(model: @cart_items, url: cart_items_path, local: true) do |f| %>
-   
+
     <% @cart_items.each do |cart_item| %>
     <tr>
       <td><%= cart_item.item.name %></td>
       <td><%= cart_item.item.with_tax_price %></td>
-      <td>数量</td>
+      <td><%= cart_item.item.quantity %></td>
       <td><%= cart_item.subtotal %></td>
     </tr>
   <% end %>
@@ -36,7 +36,7 @@
       </div>
     </div>
   </div>
-  
+
 <% end %>
 
 <%= form_with url: items_path, method: :get, local: true do |form| %>
