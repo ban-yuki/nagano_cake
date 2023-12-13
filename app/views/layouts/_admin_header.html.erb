@@ -21,7 +21,7 @@
           <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
               <tr>
-                <% if user_signed_in? %>
+                <% if admin_signed_in? %>
                   <%= link_to root_path do %>
                     <i class="fas fa-home"></i>NaganoCake
                   <% end %>

@@ -6,37 +6,35 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  def new
-    @customer = Customer.new
-  end
+  # def new
+  #   @customer = Customer.new
+  # end
 
-  def create
-    @customer = Customer.new(customer_params)
-    if @customer.save
-      redirect_to customer_path(@customer)
-    else
-      render :new
-    end
-  end
+  # def create
+  #   @customer = Customer.new(customer_params)
+  #   if @customer.save
+  #     redirect_to customer_path(@customer)
+  #   else
+  #     render :new
+  #   end
+  # end
 
-  def update
-    @customer = Customer.find(params[:id])
-    if @customer.update(customer_params)
-    redirect_to customer_path(@customer)
-    else
-    @customer = Customer.all
-    render :edit
-    end
-  end
+  # def update
+  #   @customer = Customer.find(params[:id])
+  #   if @customer.update(customer_params)
+  #   redirect_to customer_path(@customer)
+  #   else
+  #   @customer = Customer.all
+  #   render :edit
+  #   end
+  # end
+
+  # def configure_permitted_parameters
+  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+  # end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-  end
-
-  private
-
-  def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :telephone_number, :password, :password_confirmation)
+   devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :telephone_number, :password, :password_confirmation])
   end
 
   # GET /resource/sign_up

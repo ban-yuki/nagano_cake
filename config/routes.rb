@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :customers, path: 'public', skip: [:passwords], controllers: {
+  devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     get  '/current_customers/confirm_withdraw' => 'customers#confirm_withdraw'
     patch  '/current_customers/withdraw' => 'customers#withdraw'
     post '/orders/confirm' => 'orders#confirm'
-    post '/orders' => 'orders#create'   
+    post '/orders' => 'orders#create'
     patch '/cart_items/:id/update' => 'cart_items#update'
     get '/cart_items' => 'cart_items#index'
     post '/cart_items' => 'cart_items#create'
