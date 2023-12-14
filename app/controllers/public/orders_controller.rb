@@ -16,7 +16,7 @@ class Public::OrdersController < ApplicationController
   def confirm
     @order = Order.new(order_params)
     @order = @item.order.new(order_params)
-    @confirm = 800
+    @order.postage = 800
      
     
   end
@@ -48,7 +48,7 @@ class Public::OrdersController < ApplicationController
   private
   
   def order_params
-    params.require(:order).permit(:quantity, :item_id, :postal_code, :address)
+    params.require(:order).permit(:item_id, :customer_id, :postage, :total_payment, :payment_method, :postal_code, :address, :destination_name)
   end
   
 end

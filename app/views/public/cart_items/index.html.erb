@@ -4,7 +4,6 @@
 
 <%= button_to 'カートを空にする', @cart_item, method: :delete_all, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: 'fbtn' %>
 
-  <body>
     <table border="1" width="600">
       <thead>
         <tr>
@@ -16,14 +15,13 @@
         </tr>
       </thead>
     </table>
-  </body>
   <%= form_with(model: @cart_items, url: cart_items_path, local: true) do |f| %>
 
     <% @cart_items.each do |cart_item| %>
     <tr>
       <td><%= cart_item.item.name %></td>
       <td><%= cart_item.item.with_tax_price %></td>
-      <td><%= cart_item.item.quantity %></td>
+      <td><%= cart_item.quantity %></td>
       <td><%= cart_item.subtotal %></td>
     </tr>
   <% end %>
