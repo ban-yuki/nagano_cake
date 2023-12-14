@@ -1,8 +1,24 @@
-<h2>注文確認画面</h2>
-  <%= @order.quantity %>
-  <%= @item.name %>
-  <%= @item.price %>
-<%= form_with model:[@item, @order], url:(item_order_path) do |f| %>
-  <%= f.hidden_field :quantity %>
-  <%= f.submit %>
-<% end %>
+<h2>注文情報確認</h2>
+
+  <body>
+    <table border="1" width="600">
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th></th>
+        </tr>
+      </thead>
+      
+      <thead>
+        <tr>
+          <th>送料</th>
+          <th>商品合計</th>
+          <th>請求金額</th>
+          <th></th>
+        </tr>
+      </thead>
+    </table>
+  </body>
