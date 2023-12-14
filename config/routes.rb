@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
   namespace :admin do
+    get '', to: 'homes#top'
     post 'items/create' => 'items#create'
     patch 'items/:id' => 'items#update'
     patch 'customers/:id' => 'customers#update'
