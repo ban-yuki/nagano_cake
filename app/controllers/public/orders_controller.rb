@@ -11,6 +11,7 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @order_item = @order.order_items
   end
 
   def confirm

@@ -1,31 +1,64 @@
 <h2>注文情報確認</h2>
 
-  <body>
-    <table border="1" width="600">
-      <thead>
+<%= form_with(model: @cart_items, url: cart_items_path, local: true) do |f| %>
+
+<div class="row">
+	<div class="col-xs-6">
+		<table align="left" class="table table-bordered">
+      <tr>
+        <th>商品名</th>
+        <th>単価(税込)</th>
+        <th>数量</th>
+        <th>小計</th>
+      </tr>
+      <tbody>   
+      <% @cart_items.each do |cart_item| %>
         <tr>
-          <th>商品名</th>
-          <th>単価(税込)</th>
-          <th>数量</th>
-          <th>小計</th>
-          <th></th>
+          <td><%= cart_item.item.name %></td>
+          <td><%= cart_item.item.with_tax_price %></td>
+          <td><%= cart_item.quantity %></td>
+          <td><%= cart_item.subtotal %></td>
         </tr>
-      </thead>
-      
-      <thead>
-        <tr>
+      <% end %> 
+      </tbody>
+    </table>
+  </div>
+	<div class="row">
+		<div class="col-xs-4">
+			<table class="table table-bordered">
+			  <tr>
           <th>送料</th>
           <td><%= @order.postage %></td>
-         </tr>
-        <tr>
-          <th>商品合計</th>
-          <td><%= (@order.total_payment - @order.shipping_cost).to_s(:delimited, delimiter: ',') %></td>
         </tr>
-        <tr>
-          <th>請求金額</th>
-          <td><%= (@order.total_payment + @order.shipping_cost).to_s(:delimited, delimiter: ',') %></td>
-          <th></th>
-        </tr>
-      </thead>
-    </table>
-  </body>
+        <tbody>
+          <tr>
+            <th>商品合計</th>
+            <td><%= @total %></td>
+          </tr>
+          <tr>
+            <th>請求金額</th>
+            <td><%= @total + @order.postage %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<p><strong>支払方法 </strong><%= @order.payment_method %></p><br>
+
+<p><strong>お届け先 </strong><%= @order.postal_code %> <%= @order.address %> <%= @order.destination_name %></p><br>
+		<%= f.hidden_field :payment_method ,:value => @order.payment_method %>
+		<%= f.hidden_field :postage ,:value => @order.postage %>
+		<%= f.hidden_field :address,:value => @order.address %>
+		<%= f.hidden_field :postal_code,:value => @order.postal_code %>
+		<%= f.hidden_field :destination_name,:value => @order.destination_name %>
+		<%= f.hidden_field :total_payment ,:value => @total %><br><br>
+		<div class="text-center">
+			<%= f.submit "購入を確定する", class: "btn btn-success text-cenrer btn-lg" %>
+		</div>
+		<% end %>
+		<%= form_for @order, url: new_public_order_path,method: :get do |f| %><!-- 入力画面に戻る用 -->
+        <%= f.hidden_field :order,:value => @order %>
+        <%= f.submit '入力画面へ戻る' ,class: "btn btn-primary" %>
+<% end %>
