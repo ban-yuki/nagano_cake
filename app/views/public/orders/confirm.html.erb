@@ -1,6 +1,6 @@
 <h2>注文情報確認</h2>
 
-<%= form_with(model: @cart_items, url: cart_items_path, local: true) do |f| %>
+<%= form_with(model: [@cart_items,  @order], url: orders_confirm_path, local: true) do |f| %>
 
 <div class="row">
 	<div class="col-xs-6">
@@ -44,10 +44,13 @@
     </div>
   </div>
 </div>
+<% end %>
 
-<p><strong>支払方法 </strong><%= @order.payment_method %></p><br>
+<p><strong>支払方法 </strong><br><%= @order.payment_method_i18n %></p>　
 
-<p><strong>お届け先 </strong><%= @order.postal_code %> <%= @order.address %> <%= @order.destination_name %></p><br>
+<p><strong>お届け先 </strong><br>
+<%= @order.postal_code %> <%= @order.address %> <%= @order.destination_name %></p>
+  <%= form_with model: @order, method: :post, url: orders_path do |f| %>
 		<%= f.hidden_field :payment_method ,:value => @order.payment_method %>
 		<%= f.hidden_field :postage ,:value => @order.postage %>
 		<%= f.hidden_field :address,:value => @order.address %>
@@ -56,9 +59,10 @@
 		<%= f.hidden_field :total_payment ,:value => @total %><br><br>
 		<div class="text-center">
 			<%= f.submit "購入を確定する", class: "btn btn-success text-cenrer btn-lg" %>
+			<% end %>
 		</div>
-		<% end %>
-		<%= form_for @order, url: new_public_order_path,method: :get do |f| %><!-- 入力画面に戻る用 -->
-        <%= f.hidden_field :order,:value => @order %>
-        <%= f.submit '入力画面へ戻る' ,class: "btn btn-primary" %>
-<% end %>
+		
+		<%= form_with model: @order, url: new_order_path,method: :get do |f| %>
+      <%= f.hidden_field :order,:value => @order %>
+      <%= f.submit '入力画面へ戻る' ,class: "btn btn-primary" %>
+　　<% end %>

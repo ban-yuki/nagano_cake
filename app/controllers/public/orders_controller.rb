@@ -14,12 +14,15 @@ class Public::OrdersController < ApplicationController
     @order_item = @order.order_items
   end
 
-  def confirm
+  def confirm    
+    params[:order][:payment_method] = params[:order][:payment_method].to_i
     @order = Order.new(order_params)
-    @order = @item.order.new(order_params)
-    @order.postage = 800
-     
-    
+    @order.postal_code = current_customer.postal_code
+    @order.address = current_customer.address
+    @order.destination_name = current_customer.last_name + current_customer.first_name 
+    @cart_items = CartItem.where(customer_id: current_customer.id)
+    @order.postage = 800 
+    @total = 0
   end
   
   def confirm_orders
