@@ -15,7 +15,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm    
-    
+    params[:order][:payment_method] = params[:order][:payment_method].to_i
     @order = Order.new(order_params)
     @order.postal_code = current_customer.postal_code
     @order.address = current_customer.address
@@ -32,22 +32,18 @@ class Public::OrdersController < ApplicationController
   def create
     cart_items = current_customer.cart_items.all
     @order = current_customer.orders.new(order_params)
-    if @order.save
-      @cart_items.each do |cart|
-        @order_item = OrderItem.new
-        @order_item.item_id = cart.item_id
-        @order_item.order_id = @order.id
-        @order_item.order_quantity = cart.quantity
-        @order_item.order_price = cart.item.price
-        @order_item.save
+    @order.save
+      cart_items.each do |cart|
+        @order_details = OrderDetail.new
+        @order_details.item_id = cart.item_id
+        @order_details.order_id = @order.id
+        @order_details.order_quantity = cart.quantity
+        @order_details.price = cart.item.price
+        @order_details.save
       end
-      cart_items.destroy_all
-      redirect_to orders_confirm_path
-      
-    else
-      @order = Order.new(order_params)
-      render :new
-    end
+      current_customer.cart_items.destroy_all
+      redirect_to orders_confirm_orders_path
+ 
   end
   
   private
