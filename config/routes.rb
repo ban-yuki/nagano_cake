@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get  '/current_customers/confirm_withdraw' => 'customers#confirm_withdraw'
     patch  '/current_customers/withdraw' => 'customers#withdraw'
     post '/orders/confirm' => 'orders#confirm'
+    get '/orders/confirm_orders' => 'orders#confirm_orders'
     post '/orders' => 'orders#create'
     patch '/cart_items/:id/update' => 'cart_items#update'
     get '/cart_items' => 'cart_items#index'
@@ -21,7 +22,7 @@ Rails.application.routes.draw do
     delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
     resources :customers, only: [:show, :edit]
     resources :items, only: [:index, :show]
-    resources :orders, only: [:new, :index, :show, :confirm_orders]
+    resources :orders, only: [:new, :index, :show]
   end
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
