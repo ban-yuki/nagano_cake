@@ -1,3 +1,15 @@
 <%= render 'layouts/customer_header' %>
 
 <h2>注文履歴一覧</h2>
+
+<%= form_with(model: @order, url: orders_path, local: true) do |f| %>
+
+  <tr>
+    <th>注文日</th>
+    <th>配送先</th>
+    <th>注文商品</th>
+    <th>支払金額</th>
+    <th>注文詳細</th>
+  </tr>
+  
+<% end %>
