@@ -1,3 +1,5 @@
+<%= render 'layouts/admin_header' %>
+
 <h2>会員情報編集</h2>
 
 <%= form_with model: @customer, url: admin_customer_path(@customer.id) do |f| %>

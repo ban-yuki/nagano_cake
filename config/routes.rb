@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     patch 'customers/:id' => 'customers#update'
     resources :items, only: [:new, :index, :show, :edit]
     resources :customers, only: [:index, :show, :edit]
+    resources :orders, only: [:show]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
