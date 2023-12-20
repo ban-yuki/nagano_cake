@@ -1,25 +1,14 @@
 <%= render 'layouts/customer_header' %>
 
-<h2><%= @customer.full_name %></th>さんの会員情報編集</h2>
+<h2>会員情報編集</h2>
 
 <%= form_with model: @customer, url: customer_registration_path do |f| %>
-
-  <div class="row">
-    <div class="col-2">
-      <div class="field">
-        会員ID
-        <%= @customer.id %>
-      </div>
-    </div>
-  </div>
 
  <div class="row">
     <div class="col-2">
       <div class="field">
-        名前
-        <%= f.label :（姓） %>
+        氏名
         <%= f.text_field :last_name %>
-        <%= f.label :（名） %>
         <%= f.text_field :first_name %>
       </div>
     </div>
@@ -29,9 +18,7 @@
     <div class="col-2">
       <div class="field">
         フリガナ
-        <%= f.label :（セイ） %>
         <%= f.text_field :last_name_kana %>
-        <%= f.label :（メイ） %>
         <%= f.text_field :first_name_kana %>
       </div>
     </div>
@@ -63,7 +50,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-2">
       <div class="field">
@@ -72,7 +59,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="form-group row">
   <%= f.label :is_active, '会員ステータス', class: 'col-sm-3 col-form-label' %>
   <div class="col-sm-9">

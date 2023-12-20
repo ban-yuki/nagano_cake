@@ -1,16 +1,19 @@
 <%= render 'layouts/customer_header' %>
 
-<h2>Log in</h2>
+<div class="container">
+<h2>ログイン</h2>
+
+<p>会員の方はこちらからログイン</p>
 
 <%= form_with model: @customer, url: customer_session_path do |f| %>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :メールアドレス %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %><br />
+    <%= f.label :パスワード %><br />
     <%= f.password_field :password, autocomplete: "current-password" %>
   </div>
 
@@ -22,8 +25,15 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "ログイン" %>
   </div>
 <% end %>
+</div>
 
-<%= render "public/shared/links" %>
+<div class="container">
+<h7>会員登録がお済みでない方</h7><br>
+  <%= render "public/shared/links" %>から新規登録を行なってください。 
+</div>
+
+
+

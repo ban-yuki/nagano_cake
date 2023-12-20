@@ -1,20 +1,25 @@
 <%= render 'layouts/customer_header' %>
 
-<table class="table table-hover table-inverse">
-  <div>
-    <tr>
-      <p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <div class="show-image">
         <% if @item.image.attached? %>
           <%= image_tag @item.image, size: "300x300" %>
         <% else %>
           <%= image_tag 'no_image', size: "200x200" %>
         <% end %>
-      </p>
-      <p><%= @item.name %></p>
-      <p><%= @item.introduction %></p>
-      <p>¥<%= @item.price %>（税込）</p>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="show-content">
+        <h3><%= @item.name %></h3><br>
+        <p><%= @item.introduction %></p>
+        <h6>¥<%= @item.price %><span>（税込）</span></h6>
+      </div>
+    </div>
   </div>
-</table>
+ </div>
   
 
 <%= form_with model:@cart_item, url:cart_items_path, method: :post, local:true do |f| %>

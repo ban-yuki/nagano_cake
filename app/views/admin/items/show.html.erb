@@ -1,22 +1,28 @@
 <%= render 'layouts/admin_header' %>
 
-<h2>商品詳細</h2>
-
-<%= form_with model: @item, url: admin_item_path(@item.id) do |f| %>
-
-  <% if @item.image.attached? %>
-    <%= image_tag @item.image, size: "200x200" %>
-  <% else %>
-    <%= image_tag 'no_image', size: "200x200" %>
+<div class="container">
+  <div class="row">
+    <h2>商品詳細</h2>
+    <%= form_with model: @item, url: admin_item_path(@item.id) do |f| %>
+      <div class="col-md-7">
+        <div class="show-image">
+          <% if @item.image.attached? %>
+            <%= image_tag @item.image, size: "200x200" %>
+          <% else %>
+            <%= image_tag 'no_image', size: "200x200" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div>
+          <p>商品名：<%= @item.name %></p>
+          <p>商品説明：<%= @item.introduction %></p>
+          <p>税抜価格：<%= @item.price %>円</p>
+        </div>
+      </div>
+    <% end %>   
+  </div> 
+  <%= form_with url: edit_admin_item_path(@item.id), method: :get, local: true do |form| %>
+   <%= form.submit '編集する', class: "btn btn-sm btn-success" %>
   <% end %>
-
-  <div>
-    <p>商品名：<%= @item.name %></p>
-    <p>商品説明：<%= @item.introduction %></p>
-    <p>税抜価格：<%= @item.price %>円</p>
-  </div>
-<% end %>
-
-<%= form_with url: edit_admin_item_path(@item.id), method: :get, local: true do |form| %>
- <%= form.submit '編集する', class: "btn btn-sm btn-success" %>
-<% end %>
+</div>

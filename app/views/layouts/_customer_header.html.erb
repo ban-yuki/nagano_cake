@@ -1,48 +1,35 @@
-
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-          <a class="navbar-brand" href="/">NaganoCake</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-              <tr>
-                <% if customer_signed_in? %>
-                  <%= link_to root_path do %>
-                    <i class="fas fa-home"></i>NaganoCake
-                  <% end %>
-                  <%= link_to customer_path(current_customer.id) do %>
-                    <i class="fa-solid fa-book-open"></i>マイページ
-                  <% end %>
-                  <%= link_to items_path do %>
-                    <i class="fa-solid fa-book-open"></i>商品一覧
-                  <% end %>
-                  <%= link_to cart_items_path do %>
-                    <i class="fa-solid fa-book-open"></i>カート
-                  <% end %>
-                  <%= link_to destroy_customer_session_path, method: :delete do%>
-                    <i class="fa-solid fa-sign-out-alt"></i>ログアウト
-                  <% end %>
-                <% else %>
-                  <%= link_to root_path do %>
-                    <i class="fas fa-home"></i>Home
-                  <% end %>
-                  <%= link_to about_path do %>
-                    <i class="fa-solid fa-link"></i>About
-                  <% end %>
-                  <%= link_to new_customer_registration_path do %>
-                    <i class="fa-solid fa-users"></i>新規登録
-                  <% end %>
-                  <%= link_to new_customer_session_path do %>
-                    <i class="fa-solid fa-book-open"></i>ログイン
-                  <% end %>
-                <% end %>
-              </tr>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
+<header> 
+  <tr>
+    <% if customer_signed_in? %>
+      <%= link_to root_path do %>
+        <i class="fas fa-home"></i>NaganoCake
+      <% end %>
+      <%= link_to customer_path(current_customer.id) do %>
+        <i class="fa-solid fa-book-open"></i>マイページ
+      <% end %>
+      <%= link_to items_path do %>
+        <i class="fa-solid fa-book-open"></i>商品一覧
+      <% end %>
+      <%= link_to cart_items_path do %>
+        <i class="fa-solid fa-book-open"></i>カート
+      <% end %>
+      <%= link_to destroy_customer_session_path, method: :delete do%>
+        <i class="fa-solid fa-sign-out-alt"></i>ログアウト
+      <% end %>
+    <% else %>
+      <%= link_to root_path do %>
+        <i class="fas fa-home"></i>Home
+      <% end %>
+      <%= link_to about_path do %>
+        <i class="fa-solid fa-link"></i>About
+      <% end %>
+      <%= link_to new_customer_registration_path do %>
+        <i class="fa-solid fa-users"></i>新規登録
+      <% end %>
+      <%= link_to new_customer_session_path do %>
+        <i class="fa-solid fa-book-open"></i>ログイン
+      <% end %>
+    <% end %>
+  </tr>
+</header>
 
