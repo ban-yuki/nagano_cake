@@ -12,7 +12,7 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_detail = @order.order_details
+    @order_details = @order.order_details.all
     @total = 0
     
   end

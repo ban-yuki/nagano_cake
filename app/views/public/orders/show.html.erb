@@ -41,12 +41,24 @@
 
 <h4>注文内容</h4>
   <table border="1" width="600">
-    <tr>
-      <th>商品名</th>
-      <th>単価(税込)</th>
-      <th>数量</th>
-      <th>小計</th>
-    </tr>
+    <thead>
+      <tr>
+        <th>商品名</th>
+        <th>単価(税込)</th>
+        <th>数量</th>
+        <th>小計</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order_details.each do |order_detail| %>
+        <tr>
+          <td><%= order_detail.item.name %></td>
+          <td>¥<%= (order_detail.price * 1.1).floor.to_s(:delimited) %></td>
+          <td><%= order_detail.quantity %></td>
+          <td>¥<%= (order_detail.price * order_detail.quantity * 1.1).floor.to_s(:delimited) %></td>
+        </tr>
+      <% end %>
+    </tbody>
    
   </table>
 
