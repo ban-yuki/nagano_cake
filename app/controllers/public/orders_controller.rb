@@ -11,9 +11,10 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    @order_details = OrderDetail.all
     @order = Order.find(params[:id])
-    @cart_items = CartItem.where(customer_id: current_customer.id)
+    @order_detail = @order.order_details
+    @total = 0
+    
   end
 
   def confirm    

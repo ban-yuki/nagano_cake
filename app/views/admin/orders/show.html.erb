@@ -1,0 +1,22 @@
+<%= render 'layouts/admin_header' %>
+
+<div class="col-md-8 offset-md-1">
+  <h2>注文履歴詳細</h2>
+    <table border="1"width="400">
+    <tr>
+      <th>購入者</th><th><%= order_destination.name %></th>
+    </tr>
+
+    <tr>
+      <th>注文日</th><th><%= order.created_at.strftime('%Y/%m/%d') %></th>
+    </tr>
+
+    <tr>
+      <th>配送先</th><th><%= @customer.postal_code %><%= @customer.address %><%= order_destination.name %></th>
+    </tr>
+
+    <tr>
+      <th>支払方法</th><th><%= @order.payment_method_i18n %></th>
+    </tr>
+    </table>
+</div>
