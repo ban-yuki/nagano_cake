@@ -24,6 +24,7 @@ class Public::OrdersController < ApplicationController
     @order.address = current_customer.address
     @order.destination_name = current_customer.last_name + current_customer.first_name 
     @cart_items = CartItem.where(customer_id: current_customer.id)
+    @order.total_payment = @cart_items.inject(0) { |sum, cart_item| sum + cart_item.subtotal }
     @order.postage = 800 
     @total = 0
   end

@@ -10,5 +10,9 @@ class Order < ApplicationRecord
   def address_display
     '〒' + postal_code + ' ' + address
   end
+  
+  def subtotal
+    cart_item.with_tax_price * quantity
+  end
 
 end

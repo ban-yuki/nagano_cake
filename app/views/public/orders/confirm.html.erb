@@ -6,7 +6,7 @@
 
 <div class="row">
 	<div class="col-xs-6">
-		<table align="left" class="table table-bordered">
+		<table border="1">
       <tr>
         <th>商品名</th>
         <th>単価(税込)</th>
@@ -27,7 +27,7 @@
   </div>
 	<div class="row">
 		<div class="col-xs-4">
-			<table class="table table-bordered">
+			<table border="1">
 			  <tr>
           <th>送料</th>
           <td><%= @order.postage %></td>
@@ -39,7 +39,9 @@
           </tr>
           <tr>
             <th>請求金額</th>
-            <td><%= @total + @order.postage %></td>
+            <td>
+              <%= @total + @order.postage %>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -48,18 +50,18 @@
 </div>
 
 
-<p><strong>支払方法 </strong><br><%= @order.payment_method_i18n %></p>
+<p><strong>支払方法 </strong><%= @order.payment_method_i18n %></p>
    <%= f.hidden_field :payment_method ,:value => @order.payment_method %>
-	 
 
-<p><strong>お届け先 </strong><br>
-<%= @order.postal_code %> <%= @order.address %> <%= @order.destination_name %></p>
+
+<p><strong>お届け先 </strong>
+〒<%= @order.postal_code %> <%= @order.address %><br> <%= @order.destination_name %></p>
 	<%= f.hidden_field :postage ,:value => @order.postage %>
 	<%= f.hidden_field :address,:value => @order.address %>
 	<%= f.hidden_field :postal_code,:value => @order.postal_code %>
 	<%= f.hidden_field :destination_name,:value => @order.destination_name %>
 	<%= f.hidden_field :total_payment ,:value => @total %><br><br>
-	
+
   <div class="text-center">
 	<%= f.submit "購入を確定する", class: "btn btn-success text-cenrer btn-lg" %>
 	</div>

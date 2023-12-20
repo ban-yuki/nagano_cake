@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     patch '/cart_items/:id/update' => 'cart_items#update'
     get '/cart_items' => 'cart_items#index'
     post '/cart_items' => 'cart_items#create'
-    delete '/cart_items/:id/update' => 'cart_items#destroy'
+    delete '/cart_items/:id/destroy' => 'cart_items#destroy'
     delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
     resources :customers, only: [:show, :edit]
     resources :items, only: [:index, :show]

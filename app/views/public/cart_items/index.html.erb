@@ -4,38 +4,40 @@
 
 <%= button_to 'カートを空にする', @cart_item, method: :delete_all, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: 'fbtn' %>
 
-    <table border="1" width="600">
-      <thead>
-        <tr>
-          <th>商品名</th>
-          <th>単価(税込)</th>
-          <th>数量</th>
-          <th>小計</th>
-          <th></th>
-        </tr>
-      </thead>
-    </table>
-  <%= form_with(model: @cart_items, url: cart_items_path, local: true) do |f| %>
-
-    <% @cart_items.each do |cart_item| %>
+  <table border="1" width="600">  
     <tr>
-      <td><%= cart_item.item.name %></td>
-      <td><%= cart_item.item.with_tax_price %></td>
-      <td><%= cart_item.quantity %></td>
-      <td><%= cart_item.subtotal %></td>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th></th>
     </tr>
-  <% end %>
+　　<tbody>
+      <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td><%= cart_item.item.name %></td>
+          <td><%= cart_item.item.with_tax_price %></td>
+          <td><%= cart_item.quantity %></td>
+          <td><%= cart_item.subtotal %></td>
+          <td>
+            <%= link_to cart_items_path, method: :delete do %>
+              <button class="btn btn-danger">削除</button>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
   <div class="row">
-    <div class="col-2">
-      <div class="field">
-        合計金額
-        <%= @total %>
-      </div>
-    </div>
+    <table border="1">
+      <tr>
+        <td>合計金額</th>
+        <td><%= @total %></td>    
+      </tr>
+    </table>
   </div>
 
-<% end %>
 
 <%= form_with url: items_path, method: :get, local: true do |form| %>
  <%= form.submit '買い物を続ける', class: "btn btn-sm btn-success" %>
