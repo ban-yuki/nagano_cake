@@ -4,7 +4,7 @@
   <h2>注文履歴詳細</h2>
     <table border="1"width="400">
     <tr>
-      <th>購入者</th><th><%= order_destination.name %></th>
+      <th>購入者</th><th><%= @order.customer.last_name %><%= @order.customer.first_name %></th>
     </tr>
 
     <tr>
