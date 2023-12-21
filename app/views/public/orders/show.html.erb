@@ -26,7 +26,7 @@
   <table border="1" >
     <tr>
       <td>商品合計</th>
-      <td><%= @total %></td>
+      <td><%= @order.total_payment %></td>
     </tr>
     <tr>
       <td>配送料</th>
@@ -34,7 +34,7 @@
     </tr>
     <tr>
       <td>ご請求額</th>
-      <td><%= @order.total_payment %></td>
+      <td><%= @order.total_payment + @order.postage %></td>
     </tr>
   </table>
 
@@ -51,14 +51,13 @@
     </thead>
     <tbody>
       <% @order_details.each do |order_detail| %>
-        <tr>
-          <td><%= order_detail.item.name %></td>
-          <td>¥<%= (order_detail.price * 1.1).floor.to_s(:delimited) %></td>
-          <td><%= order_detail.quantity %></td>
-          <td>¥<%= (order_detail.price * order_detail.quantity * 1.1).floor.to_s(:delimited) %></td>
-        </tr>
+      <tr>
+        <td><%= order_detail.item.name %></td>
+        <td><%= order_detail.item.price %></td>
+        <td><%= order_detail.quantity %></td>
+        <td><%= order_detail.quantity * order_detail.item.price %></td>
+      </tr>
       <% end %>
-    </tbody>
-   
+    </tbody> 
   </table>
 
