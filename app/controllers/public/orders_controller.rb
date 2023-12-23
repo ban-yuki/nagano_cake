@@ -36,13 +36,19 @@ class Public::OrdersController < ApplicationController
   def create
     cart_items = current_customer.cart_items.all
     @order = current_customer.orders.new(order_params)
+     @order.pay_method = params[:order][:pay_method]
+      if @order.pay_method == "credit_card"
+        @order.status = 0
+      else
+        @order.status = 1
+      end
     @order.save
       cart_items.each do |cart|
         @order_details = OrderDetail.new
         @order_details.item_id = cart.item.id
         @order_details.order_id = @order.id
         @order_details.order_quantity = cart.quantity
-        @order_details.price = cart.item.price
+        @order_details.total_payment = cart.item.total_payment
         @order_details.save
       end
       current_customer.cart_items.destroy_all

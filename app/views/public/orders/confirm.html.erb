@@ -52,6 +52,11 @@
 
 <p><strong>支払方法 </strong><%= @order.payment_method_i18n %></p>
    <%= f.hidden_field :payment_method ,:value => @order.payment_method %>
+   <% if @order_pay_method == "credit_card" %>
+      クレジットカード
+    <% else %>
+      銀行振込
+    <% end %>
 
 
 <p><strong>お届け先 </strong>

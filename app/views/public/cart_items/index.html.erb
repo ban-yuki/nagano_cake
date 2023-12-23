@@ -17,7 +17,12 @@
         <tr>
           <td><%= cart_item.item.name %></td>
           <td><%= cart_item.item.with_tax_price %></td>
-          <td><%= cart_item.quantity %></td>
+          <td>
+            <%= form_with model:@cart_item, url:cart_items_path, method: :post, local:true do |f| %>
+              <%= f.select :quantity, *[1..5],required:true%>&emsp;
+              <%= f.submit "変更" %>
+            <% end %>         
+          </td>
           <td><%= cart_item.subtotal %></td>
           <td>
             <%= link_to cart_items_path, method: :delete do %>
