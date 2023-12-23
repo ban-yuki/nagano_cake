@@ -31,7 +31,7 @@ class Public::CartItemsController < ApplicationController
   def update
     @cart_item = CartItem.find_by(item_id: params[:cart_item][:item_id])
 		@cart_item.update(cart_item_params)
-		redirect_to public_cart_items_path
+		redirect_to cart_items_path
   end
 
   def destroy
@@ -42,9 +42,8 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy_all
-    @cart_items = CartItems.all
     current_customer.cart_items.destroy_all
-  　render 'index'
+  　redirect_to cart_items_path
   end
 
   private

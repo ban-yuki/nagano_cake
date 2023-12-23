@@ -1,32 +1,33 @@
 <%= render 'layouts/customer_header' %>
 
+<div class="container">
 <h2>注文情報確認</h2>
 
 <%= form_with(model: @order, url: orders_path, local: true) do |f| %>
 
-<div class="row">
-	<div class="col-md-10 offset-md-1">
-		<table border="1">
-      <tr>
-        <th>商品名</th>
-        <th>単価(税込)</th>
-        <th>数量</th>
-        <th>小計</th>
-      </tr>
-      <tbody>
-      <% @cart_items.each do |cart_item| %>
+  <div class="row">
+  	<div class="col-xs-8">
+  		<table border="1">
         <tr>
-          <td><%= cart_item.item.name %></td>
-          <td><%= cart_item.item.with_tax_price %></td>
-          <td><%= cart_item.quantity %></td>
-          <td><%= cart_item.subtotal %></td>
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
         </tr>
-      <% end %>
-      </tbody>
-    </table>
-  </div>
-	<div class="row">
-		<div class="col-md-10">
+        <tbody>
+        <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td><%= cart_item.item.name %></td>
+            <td><%= cart_item.item.with_tax_price %></td>
+            <td><%= cart_item.quantity %></td>
+            <td><%= cart_item.subtotal %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  	
+		<div class="col-xs-3">
 			<table border="1">
 			  <tr>
           <th>送料</th>
@@ -35,28 +36,24 @@
         <tbody>
           <tr>
             <th>商品合計</th>
-            <td><%= @total %></td>
+            <td><%= @order.total_payment %></td>
           </tr>
           <tr>
             <th>請求金額</th>
             <td>
-              <%= @total + @order.postage %>
+              <%= @order.total_payment + @order.postage %>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-  </div>
+  </div> 
 </div>
 
 
 <p><strong>支払方法 </strong><%= @order.payment_method_i18n %></p>
    <%= f.hidden_field :payment_method ,:value => @order.payment_method %>
-   <% if @order_pay_method == "credit_card" %>
-      クレジットカード
-    <% else %>
-      銀行振込
-    <% end %>
+   
 
 
 <p><strong>お届け先 </strong>

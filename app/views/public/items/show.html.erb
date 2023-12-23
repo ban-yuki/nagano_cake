@@ -27,5 +27,4 @@
   <p>数量を選択してください。</p>
   <%= f.select :quantity, *[1..5],{include_blank: '個数選択'},required:true%>&emsp;
   <%= f.submit "カートに入れる" %>
-  <%= f.hidden_field :quantity, value: quantity %>
 <% end %>
