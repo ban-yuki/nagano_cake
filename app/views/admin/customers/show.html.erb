@@ -12,7 +12,13 @@
     <p>住所<%= @customer.address %></p>
     <p>電話番号<%= @customer.telephone_number %></p>
     <p>メールアドレス<%= @customer.email %> %></p>
-    <p>会員ステータス<%= @customer.is_active %></p>
+    <p>会員ステータス
+      <% if @customer.is_active %>
+        <span class="bg-danger">有効</span>
+      <% else %>
+        <span class="bg-primary">退会</span>
+      <% end %>
+    </p>
   </div>
 <% end %>
 

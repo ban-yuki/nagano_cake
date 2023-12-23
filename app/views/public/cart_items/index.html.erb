@@ -55,8 +55,11 @@
  <%= form.submit '買い物を続ける', class: "btn btn-sm btn-success" %>
 <% end %>
 
-<%= form_with url: new_order_path, method: :get, local: true do |form| %>
- <%= form.submit '情報入力に進む', class: "btn btn-sm btn-success" %>
+<% if @cart_items.present? %>
+  <%= form_with url: new_order_path, method: :get, local: true do |form| %>
+   <%= form.submit '情報入力に進む', class: "btn btn-sm btn-success" %>
+  <% end %>
 <% end %>
+  
 
 

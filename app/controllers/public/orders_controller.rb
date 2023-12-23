@@ -50,7 +50,8 @@ class Public::OrdersController < ApplicationController
         @order_details.price = cart.item.with_tax_price
         @order_details.save
       end
-      redirect_to cart_items_path
+      current_customer.cart_items.destroy_all
+      redirect_to orders_confirm_orders_path
 
   end
 

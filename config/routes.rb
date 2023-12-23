@@ -30,10 +30,8 @@ Rails.application.routes.draw do
   }
   namespace :admin do
     get '', to: 'homes#top'
-    post 'items/create' => 'items#create'
-    patch 'items/:id' => 'items#update'
     patch 'customers/:id' => 'customers#update'
-    resources :items, only: [:new, :index, :show, :edit]
+    resources :items, only: [:new, :index, :show, :edit, :create, :update]
     resources :customers, only: [:index, :show, :edit]
     resources :orders, only: [:show]
   end

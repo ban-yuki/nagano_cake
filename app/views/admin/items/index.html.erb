@@ -1,6 +1,12 @@
 <%= render 'layouts/admin_header' %>
 
+<div class="container">
 <h2>商品一覧</h2>
+
+<%= link_to new_admin_item_path do %>
+  <button type="button" class="btn-outline-dark btn-circle btn-lg">＋</button>
+<% end %>
+          
 <table>
   <tr>
     <th>商品ID</th>
@@ -18,3 +24,4 @@
     </tr>
   <% end %>
 </table>
+</div>

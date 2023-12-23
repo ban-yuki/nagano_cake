@@ -1,6 +1,6 @@
 <h1>商品編集</h1>
 
-<%= form_with model: @item, url: edit_admin_item_path(@item.id) do |f| %>
+<%= form_with model: @item, url: admin_item_path(@item.id) do |f| %>
 
   <h4>商品画像</h4>
   <%= f.file_field :image, accept: "image/*" %>
