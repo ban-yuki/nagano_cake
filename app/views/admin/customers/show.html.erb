@@ -14,10 +14,10 @@
     <p>メールアドレス<%= @customer.email %> %></p>
     <p>会員ステータス
       <% if @customer.is_active %>
-        <span class="bg-danger">有効</span>
-      <% else %>
-        <span class="bg-primary">退会</span>
-      <% end %>
+          <span class="bg-danger">有効</span>
+        <% else %>
+          <span class="bg-primary">退会</span>
+        <% end %>
     </p>
   </div>
 <% end %>
