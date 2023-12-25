@@ -27,9 +27,6 @@
       <%= f.label :is_active, '退会', class: 'custom-control-label', for: 'status-deleted' %>
     </div>
   </div>
-  
-<% end %>
 
-<%= form_with url: edit_admin_customer_path(@customer.id), method: :get, local: true do |form| %>
- <%= form.submit '編集する', class: "btn btn-sm btn-success" %>
+ <%= f.submit '編集する', class: "btn btn-sm btn-success" %>
 <% end %>

@@ -39,7 +39,7 @@ class Public::OrdersController < ApplicationController
     cart_items.each do |cart|
       @order.total_payment = cart.subtotal + @order.total_payment
     end
-     @order.payment_method = params[:order][:payment_method]
+    @order.payment_method = params[:order][:payment_method]
 
     @order.save
       cart_items.each do |cart|

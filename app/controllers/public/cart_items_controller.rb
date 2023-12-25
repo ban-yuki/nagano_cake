@@ -1,8 +1,8 @@
 class Public::CartItemsController < ApplicationController
 
   def index
-    @cart_items = CartItem.all
-    @cart_item = current_customer.cart_items.find_by(quantity: params[:quantity])
+    @cart_items = current_customer.cart_items.all
+    #@cart_item = current_customer.cart_items.find_by(quantity: params[:quantity])
     @item = Item.all
     @total = @cart_items.inject(0) { |sum, cart_item| sum + cart_item.subtotal }
 
@@ -29,16 +29,16 @@ class Public::CartItemsController < ApplicationController
   end
 
   def update
-    @cart_item = CartItem.find_by(item_id: params[:cart_item][:item_id])
+    @cart_item = CartItem.find(params[:id])
 		@cart_item.update(cart_item_params)
 		redirect_to cart_items_path
   end
 
   def destroy
     @cart_item = CartItem.find(params[:id])
-    cart_item.destroy
-    @cart_items = CartItem.all
-  　render 'index'
+    @cart_item.destroy
+    @cart_items = current_customer.cart_items
+    render 'index'
   end
 
   def destroy_all

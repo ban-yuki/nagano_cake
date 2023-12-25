@@ -2,12 +2,12 @@
 
 <h4>ショッピングカート</h4>
 
-<div class="col-md-8 offset-md-1"> 
+<div class="col-md-8 offset-md-1">
 
 <%= link_to cart_items_destroy_all_path, method: :delete do %>
   <button class="btn btn-danger ">カートを空にする</button>
 <% end %>
-  <table border="1" width="600">  
+  <table border="1" width="600">
     <tr>
       <th>商品名</th>
       <th>単価(税込)</th>
@@ -25,11 +25,11 @@
               <%= f.select :quantity, *[1..5],required:true%>&emsp;
               <%= f.submit "変更" %>
               <%= f.hidden_field :item_id, value: cart_item.item.id %>
-            <% end %>         
+            <% end %>
           </td>
           <td><%= cart_item.subtotal %></td>
           <td>
-            <%= link_to cart_items_path, method: :delete do %>
+            <%= link_to cart_item_delete_path(cart_item.id), method: :delete do %>
               <button class="btn btn-danger">削除</button>
             <% end %>
           </td>
@@ -37,18 +37,18 @@
       <% end %>
     </tbody>
   </table>
-</div> 
-  
-<div class="col-md-5 offset-md-1"> 
+</div>
+
+<div class="col-md-5 offset-md-1">
   <div class="row">
     <table border="1">
       <tr>
         <td>合計金額</th>
-        <td><%= @total %></td>    
+        <td><%= @total %></td>
       </tr>
     </table>
   </div>
-</div> 
+</div>
 
 
 <%= form_with url: items_path, method: :get, local: true do |form| %>
@@ -60,6 +60,6 @@
    <%= form.submit '情報入力に進む', class: "btn btn-sm btn-success" %>
   <% end %>
 <% end %>
-  
+
 
 
