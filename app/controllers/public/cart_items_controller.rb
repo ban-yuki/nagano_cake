@@ -2,7 +2,7 @@ class Public::CartItemsController < ApplicationController
 
   def index
     @cart_items = current_customer.cart_items.all
-    #@cart_item = current_customer.cart_items.find_by(quantity: params[:quantity])
+    @cart_item = current_customer.cart_items.find_by(quantity: params[:quantity])
     @item = Item.all
     @total = @cart_items.inject(0) { |sum, cart_item| sum + cart_item.subtotal }
 

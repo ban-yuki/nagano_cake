@@ -18,7 +18,7 @@
       <th>配送先</th>
       <th>〒<%= @order.customer.postal_code %><%= @order.customer.address %><br>
           <% @order_details.each do |order_detail| %> 
-            <%= order_destination.name %>
+            <%= order_detail.order.destination_name %>
           <% end %>
       </th>
     </tr>
@@ -63,8 +63,8 @@
       <tr>
         <td><%= order_detail.item.name %></td>
         <td><%= order_detail.item.price %></td>
-        <td><%= order_detail.quantity %></td>
-        <td><%= order_detail.quantity * order_detail.item.price %></td>
+        <td><%= order_detail.order_quantity %></td>
+        <td><%= order_detail.order_quantity * order_detail.item.price %></td>
       </tr>
       <% end %>
     </tbody> 

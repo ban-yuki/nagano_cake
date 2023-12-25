@@ -8,8 +8,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: "homes#top"
     get "/about" => "homes#about", as: "about"
-    patch '/current_customers/update'
-    patch '/current_customers' => 'public/customers#update'
+    patch '/current_customers' => 'customers#update'
     get  '/current_customers/confirm_withdraw' => 'customers#confirm_withdraw'
     patch  '/current_customers/withdraw' => 'customers#withdraw'
     post '/orders/confirm' => 'orders#confirm'

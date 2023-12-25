@@ -11,7 +11,9 @@ class Public::CustomersController < ApplicationController
 
   def update
     @customer = current_customer
-    
+    if @customer.update(customer_params)
+      redirect_to customer_path(@customer.id)
+    end
   end
 
   def confirm_withdraw
